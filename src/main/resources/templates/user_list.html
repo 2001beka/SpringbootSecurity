@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>users</title>
+</head>
+<body>
+<br>
+<div class="container">
+    <a th:href="@{/login}"><input type="submit" class="btn btn-danger" value="Log out"></a>
+    <div class="text-center">
+        <table  class="table table-bordered table-hover table-condensed " style="background-color:lightblue">
+            <tr class="ui-state-active" style="background-color:grey">
+                <th>Id</th>
+                <th>Name</th>
+                <th>National</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.getId()}"></td>
+                <td th:text="${user.getName()}"></td>
+                <td th:text="${user.getNational()}"></td>
+                <td th:text="${user.getAge()}"></td>
+                <td th:text="${user.getSalary()}"></td>
+                <td><a th:href="@{update/{id}(id=${user.id})}"><input type="submit" class="btn btn primary" value="Update user"></a></td>
+                <td><a th:href="@{delete/{id}(id=${user.id})}"><input type="submit" class="btn btn danger" value="Delete user"></a></td>
+            </tr>
+        </table>
+        <div style="padding-left: revert">
+            <a th:href="@{/add}"><input type="submit" class="btn btn-success" value="Add user"></a>
+        </div>
+    </div>
+</div>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+</body>
+</html>
