@@ -27,17 +27,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.serviceSecurity = serviceSecurity;
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/").permitAll()
+        http.cors().and().authorizeRequests()
+                .antMatchers("/**").authenticated()
+//        http.authorizeRequests()
+//                .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers(("/admin/**")).access("hasAnyRole('ROLE_ADMIN')")
                 .antMatchers("/user").access("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
                 .and()
                 .formLogin()
                 .successHandler(loginSuccessHandler);
+        http.csrf().disable();
     }
 
 
@@ -46,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(serviceSecurity).passwordEncoder(passwordEncoder());
         auth.authenticationProvider(daoAuthenticationProvider());
     }
+
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();

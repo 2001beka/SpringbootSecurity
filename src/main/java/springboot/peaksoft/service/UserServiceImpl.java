@@ -7,9 +7,10 @@ import springboot.peaksoft.model.User;
 import springboot.peaksoft.repository.UserRepository;
 
 import java.util.List;
+
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userDao;
 
@@ -21,8 +22,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public void saveUser(User user) {
-        userDao.save(user);
+    public User saveUser(User user) {
+        return userDao.save(user);
     }
 
     @Override
@@ -33,25 +34,26 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public void updateUser(User user) {
-        userDao.save(user);
+    public User updateUser(User user) {
+
+        return userDao.save(user);
     }
 
     @Override
     @Transactional
-    public void deleteUser(User user) {
-        userDao.delete(user);
+    public void deleteUser(Long id) {
+        userDao.deleteById(id);
     }
 
     @Override
     @Transactional
     public User getById(Long id) {
-        return userDao.getById(id);
+        return userDao.findById(id).get();
     }
 
-        @Override
-        public User getByName(String name) {
-            List<User> users = getAllUsers();
-            return users.stream().filter(x -> x.getName().equals(name)).findAny().orElse(null);
-        }
+    @Override
+    public User getByName(String name) {
+        List<User> users = getAllUsers();
+        return users.stream().filter(x -> x.getName().equals(name)).findAny().orElse(null);
+    }
 }

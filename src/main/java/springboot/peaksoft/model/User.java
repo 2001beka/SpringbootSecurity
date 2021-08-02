@@ -9,8 +9,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users2")
-public class User implements UserDetails {
+@Table(name = "users3")
+public class User
+        implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,12 +31,12 @@ public class User implements UserDetails {
     @Column(name = "salary")
     private int salary;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_role2",
+    @JoinTable(name = "users_role3",
             joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
 
-    private Set<UserRole>roles = new HashSet<>();
+    private Set<UserRole> roles = new HashSet<>();
 
     public User() {
     }

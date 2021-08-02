@@ -6,8 +6,9 @@ import org.springframework.stereotype.Repository;
 import springboot.peaksoft.model.UserRole;
 
 import java.util.List;
+
 @Repository
-public interface RoleRepository extends JpaRepository<UserRole, Integer> {
+public interface RoleRepository extends JpaRepository<UserRole, Long> {
     @Query("select role from UserRole")
     List<String> getRoleNamesToList();
 }

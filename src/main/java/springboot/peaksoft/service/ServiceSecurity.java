@@ -12,6 +12,7 @@ import springboot.peaksoft.model.UserRole;
 import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Set;
+
 @Service
 public class ServiceSecurity implements UserDetailsService {
     private final UserService userDao;
